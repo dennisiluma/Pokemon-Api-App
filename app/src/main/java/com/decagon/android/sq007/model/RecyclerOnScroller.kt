@@ -1,12 +1,12 @@
-package com.byoyedele.pokemoon
-
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.*
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-
-//class RecyclerViewLoadMoreScroll : OnScrollListener {
+// package com.decagon.android.sq007.model
+//
+// import androidx.recyclerview.widget.GridLayoutManager
+// import androidx.recyclerview.widget.LinearLayoutManager
+// import androidx.recyclerview.widget.RecyclerView
+// import androidx.recyclerview.widget.RecyclerView.*
+// import androidx.recyclerview.widget.StaggeredGridLayoutManager
+//
+// class RecyclerViewLoadMoreScroll : OnScrollListener {
 //
 //    private var visibleThreshold = 20
 //    private lateinit var mOnLoadMoreListener: OnLoadMoreListener
@@ -78,4 +78,4 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 //        }
 //        return maxSize
 //    }
-//}
+// }

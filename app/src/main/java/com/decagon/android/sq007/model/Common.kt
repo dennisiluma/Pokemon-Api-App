@@ -8,6 +8,3 @@ object Common {
     val retrofitService: PokemonApi
         get() = RetrofitClient.getClient("https://pokeapi.co/api/v2/").create(PokemonApi::class.java)
 }
-
-
-

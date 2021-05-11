@@ -1,38 +1,37 @@
 package com.decagon.android.sq007.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.decagon.android.sq007.model.Common
 import com.byoyedele.pokemoon.Pokemon
-import com.decagon.android.sq007.model.PokemonApi
 import com.decagon.android.sq007.R
+import com.decagon.android.sq007.model.Common
+import com.decagon.android.sq007.model.PokemonApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
 /* declear all the views id attached to this activity */
-lateinit var lnDetailLinearLayout:LinearLayout
-lateinit var tvDetailPokmonNewName:TextView
-lateinit var ivDetailPokemonImage:ImageView
-lateinit var tvDetailPokemonHeight:TextView
-lateinit var tvDetailPokemonWeight:TextView
-lateinit var tvDetailPokemonAbilitiesList:TextView
-lateinit var tvDetailPokemonBaseExperience:TextView
-lateinit var tvDetailPokemonFormList:TextView
-lateinit var tvDetailPokemonGameIndicesList:TextView
-lateinit var tvDetailPokemonHeld_items_list:TextView
-lateinit var tvDetailPokemonMoves_list:TextView
-lateinit var tvDetailPokemonOrder:TextView
-lateinit var tvDetailPokemonSpecies:TextView
-lateinit var tvDetailPokemonStats:TextView
-lateinit var tvDetailPokemontypes:TextView
-
+lateinit var lnDetailLinearLayout: LinearLayout
+lateinit var tvDetailPokmonNewName: TextView
+lateinit var ivDetailPokemonImage: ImageView
+lateinit var tvDetailPokemonHeight: TextView
+lateinit var tvDetailPokemonWeight: TextView
+lateinit var tvDetailPokemonAbilitiesList: TextView
+lateinit var tvDetailPokemonBaseExperience: TextView
+lateinit var tvDetailPokemonFormList: TextView
+lateinit var tvDetailPokemonGameIndicesList: TextView
+lateinit var tvDetailPokemonHeld_items_list: TextView
+lateinit var tvDetailPokemonMoves_list: TextView
+lateinit var tvDetailPokemonOrder: TextView
+lateinit var tvDetailPokemonSpecies: TextView
+lateinit var tvDetailPokemonStats: TextView
+lateinit var tvDetailPokemontypes: TextView
 
 class PokemonDetailActivity : AppCompatActivity() {
     private lateinit var pokeyName: String
@@ -50,16 +49,15 @@ class PokemonDetailActivity : AppCompatActivity() {
         pokeyId = 0
 
         if (bundle != null) {
-            pokeyName = bundle.extras?.getString("NAME").toString().toUpperCase(Locale.ROOT)    // Get the value of the name and convert it to Uppercase.
-            pokeyUrl = bundle.extras?.getString("URL").toString()                               // Get the value of the URL and set as PokeyURL
-            pokeyId = bundle.extras?.getInt("ID") ?: 0                                          // Get the value of ID
+            pokeyName = bundle.extras?.getString("NAME").toString().toUpperCase(Locale.ROOT) // Get the value of the name and convert it to Uppercase.
+            pokeyUrl = bundle.extras?.getString("URL").toString() // Get the value of the URL and set as PokeyURL
+            pokeyId = bundle.extras?.getInt("ID") ?: 0 // Get the value of ID
         }
 
         ivDetailPokemonImage = findViewById(R.id.ivDetailPokemonImage)
         tvDetailPokmonNewName = findViewById<TextView>(R.id.tvDetailPokmonNewName)
         tvDetailPokmonNewName.text = pokeyName
         Glide.with(this).load(pokeyUrl).into(ivDetailPokemonImage)
-
 
         service = Common.retrofitService
 
@@ -86,21 +84,21 @@ class PokemonDetailActivity : AppCompatActivity() {
                 tvDetailPokemontypes = findViewById(R.id.tvDetailPokemontypes)
 
                 if (response.body() != null) {
-                    tvDetailPokemonHeight.text = """H: ${response.body()?.height.toString()}m"""
-                    tvDetailPokemonWeight.text = "W: ${response.body()?.weight.toString()}kg"
+                    tvDetailPokemonHeight.text = """H: ${response.body()?.height}m"""
+                    tvDetailPokemonWeight.text = "W: ${response.body()?.weight}kg"
                     tvDetailPokemonAbilitiesList.text = "Abilities: ${response.body()?.abilities?.joinToString { it.ability.name }}"
                     tvDetailPokemonFormList.text = "Forms: ${response.body()?.forms?.joinToString { it.name }}"
-                    tvDetailPokemonBaseExperience.text = "Base Experience: ${response.body()?.baseExperience.toString()}"
+                    tvDetailPokemonBaseExperience.text = "Base Experience: ${response.body()?.baseExperience}"
                     tvDetailPokemonGameIndicesList.text = "Game Indices: ${response.body()?.gameIndices?.joinToString { it.gameIndex.toString() }}"
                     tvDetailPokemonHeld_items_list.text = "Held Items: ${response.body()?.heldItems?.joinToString { it.item.name }}"
                     tvDetailPokemonMoves_list.text = "Moves: ${response.body()?.moves?.joinToString { it.move.name }}"
-                    tvDetailPokemonOrder.text = "Order: ${response.body()?.order.toString()}"
-                    tvDetailPokemonSpecies.text = "Species: ${response.body()?.species?.name.toString()}"
+                    tvDetailPokemonOrder.text = "Order: ${response.body()?.order}"
+                    tvDetailPokemonSpecies.text = "Species: ${response.body()?.species?.name}"
                     tvDetailPokemonStats.text = "Stats: ${response.body()?.stats?.joinToString { it.stat.name }}"
                     tvDetailPokemontypes.text = "Types: ${response.body()?.types?.joinToString { it.type.name }}"
                 } else {
                     Toast.makeText(this@PokemonDetailActivity, "Oga, Your Village People Don Dey Work : ${response.body()}", Toast.LENGTH_LONG).show()
-                    //On failure, display failure message
+                    // On failure, display failure message
                 }
             }
         })

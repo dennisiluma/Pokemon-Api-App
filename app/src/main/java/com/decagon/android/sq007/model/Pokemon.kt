@@ -1,6 +1,5 @@
 package com.byoyedele.pokemoon
 
-
 import com.byoyedele.pokemoon.jsonclasses.*
 import com.google.gson.annotations.SerializedName
 

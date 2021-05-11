@@ -31,11 +31,8 @@ class RecyclerAdapter(val context: Context, private val pokemon: List<Result>) :
         return pokemon.size
     }
 
-
-
-
-    inner class MyViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
-        val  tvRecyclerItemPokeyName = itemView.findViewById<TextView>(R.id.tvRecyclerItemPokeyName)
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvRecyclerItemPokeyName = itemView.findViewById<TextView>(R.id.tvRecyclerItemPokeyName)
         val ivRecyclerItemBgImg = itemView.findViewById<ImageView>(R.id.ivRecyclerItemBgImg)
         val ivRecyclerItemBgImgPokeyImg = itemView.findViewById<ImageView>(R.id.ivRecyclerItemBgImgPokeyImg)
 
@@ -59,7 +56,6 @@ class RecyclerAdapter(val context: Context, private val pokemon: List<Result>) :
             }
         }
 
-        
         fun setData(pokey: Result?, position: Int) {
             tvRecyclerItemPokeyName.text = pokey!!.name.toUpperCase(Locale.ROOT)
             val pokeyUrl = pokey.url
@@ -67,7 +63,7 @@ class RecyclerAdapter(val context: Context, private val pokemon: List<Result>) :
             this.currentUrl = imgUrl
             this.currentPokey = pokey
             this.currentPos = position
-            this.currentId = pokeyUrl.substring(34, pokeyUrl.length-1).toInt()
+            this.currentId = pokeyUrl.substring(34, pokeyUrl.length - 1).toInt()
 
             Glide.with(context).load(imgUrl).into(ivRecyclerItemBgImgPokeyImg)
             Glide.with(context).load(imgUrl).into(ivRecyclerItemBgImg)
@@ -75,7 +71,7 @@ class RecyclerAdapter(val context: Context, private val pokemon: List<Result>) :
     }
 
     private fun getPokeyId(item: String): String {
-        val id = item.substring(34, item.length-1).toInt()
+        val id = item.substring(34, item.length - 1).toInt()
         return "https://pokeres.bastionbot.org/images/pokemon/$id.png"
     }
 }

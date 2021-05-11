@@ -10,15 +10,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.decagon.android.sq007.R
+import com.decagon.android.sq007.adapter.RecyclerAdapter
 import com.decagon.android.sq007.model.Common
 import com.decagon.android.sq007.model.PokeAll
 import com.decagon.android.sq007.model.PokemonApi
-import com.decagon.android.sq007.adapter.RecyclerAdapter
-import com.decagon.android.sq007.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 class MainActivity : AppCompatActivity() {
     /* Some late decleration */
@@ -26,16 +25,14 @@ class MainActivity : AppCompatActivity() {
     lateinit var mAdapter: RecyclerAdapter
     lateinit var recyclerView: RecyclerView
 
-            /*Declare All the Views Id */
-    lateinit var etSetCount:EditText
-    lateinit var btSetCount:Button
-    lateinit var btReload:Button
-
+    /*Declare All the Views Id */
+    lateinit var etSetCount: EditText
+    lateinit var btSetCount: Button
+    lateinit var btReload: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         checkConnectivity()
         etSetCount = findViewById(R.id.etSetCount)
@@ -73,14 +70,14 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun checkConnectivity(){
+    private fun checkConnectivity() {
 
         btReload = findViewById(R.id.btReload)
         val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = cm.activeNetworkInfo
         val isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting
 
-        if (!isConnected){
+        if (!isConnected) {
             Toast.makeText(this, "Switch On Your network and Refresh", Toast.LENGTH_LONG).show()
             btReload.visibility = View.VISIBLE
         } else btReload.visibility = View.GONE
